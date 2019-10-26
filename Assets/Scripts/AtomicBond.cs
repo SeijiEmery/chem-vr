@@ -26,11 +26,13 @@ public class AtomicBond : MonoBehaviour
             var dist = Vector3.Distance(p1, p2);
             //transform.rotation = Quaternion.LookRotation((p1 - p2).normalized, Vector3.Cross(p1, p2).normalized);
             transform.LookAt(p1);
+            transform.rotation = transform.rotation * Quaternion.AngleAxis(90f, Vector3.right);
             //transform.rotation *= (Quaternion.AngleAxis(90f, Vector3.forward));
-            transform.localScale = new Vector3(
-                transform.localScale.x,
-                transform.localScale.y,
-                dist);
+            //transform.localScale = new Vector3(
+            //    transform.localScale.x,
+            //     transform.localScale.y,
+            //     dist);
+            transform.localScale = new Vector3(transform.localScale.x, dist * .5F, transform.localScale.z);
         }
     }
 }
