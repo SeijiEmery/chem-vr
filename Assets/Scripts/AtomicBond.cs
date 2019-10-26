@@ -8,11 +8,24 @@ public class AtomicBond : MonoBehaviour
     float initialLength = 1f;
     Atom first = null;
     Atom second = null;
+    SpringJoint joint = null;
 
     public void Start () { initialLength = transform.localScale.y; }
     public void SetBond(Atom first, Atom second)
     {
+        if (first == this.first && second == this.second) return;
         this.first = first; this.second = second;
+        if (joint != null)
+        {
+            GameObject.DestroyImmediate(joint);
+            joint = null;
+        }
+        if (first != null && second != null)
+        {
+            joint = first.gameObject.AddComponent<SpringJoint>();
+            joint.connectedBody = second.gameObject.GetComponent<Rigidbody>();
+            joint.spring = 1.0f;
+        }
     }
 
     // Update is called once per frame
