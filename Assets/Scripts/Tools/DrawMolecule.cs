@@ -13,8 +13,7 @@ public class DrawMolecule : HandTrackedInputReciever
     public float bondFormationRadius;
 
     struct Bond { public int from; public int to; }
-    List<Bond> currentBonds = new List<Bond>();
-    List<Bond> prevBonds = new List<Bond>();
+    List<AtomicBond> newBonds = new List<AtomicBond>();
 
     public override void OnTriggerPressed(HandTrackedInfo info)
     {
@@ -35,6 +34,7 @@ public class DrawMolecule : HandTrackedInputReciever
             drawnAtom = null;
             Object.DestroyImmediate(connectAtomToHandControllerJoint);
             connectAtomToHandControllerJoint = null;
+            newBonds.Clear();
         }
     }
     public override void OnCancelPressed(HandTrackedInfo info)
@@ -48,37 +48,32 @@ public class DrawMolecule : HandTrackedInputReciever
     }
     public void FixedUpdate()
     {
-        var bonds = currentBonds;
-        currentBonds = prevBonds;
-        prevBonds = bonds;
-        currentBonds.Clear();
+        if (atoms == null || drawnAtom == null) return;
 
-        if (atoms == null) return;
-
-        for (int i = 0; i < atoms.Length; ++i) {
-            for (int j = 1; j < atoms.Length; ++j)
-            {
-                var dist = Vector3.Distance(atoms[i].transform.position, atoms[j].transform.position);
-                //Debug.Log("" + i + ", " + j + ": " + dist);
-                if (dist <= bondFormationRadius)
-                {
-                    currentBonds.Add(new Bond() { from = i, to = j });
-                }
-            }
-        }
-
-        var bondObjects = gameObject.GetComponentsInChildren<AtomicBond>();
+        int i = 0; AtomicBond bond;
+        foreach (var atom in atoms)
         {
-            int i = 0;
-            for (; i < currentBonds.Count && i < bondObjects.Length; ++i)
+            var dist = Vector3.Distance(atom.transform.position, drawnAtom.transform.position);
+            Debug.Log("" + i + ": " + dist + ": " + (dist <= bondFormationRadius));
+            if (dist <= bondFormationRadius)
             {
-                bondObjects[i].SetBond(atoms[currentBonds[i].from], atoms[currentBonds[i].to]);
+                //if (i < atoms.Length)
+                //{
+                //    bond = newBonds[i];
+                //} else
+                //{
+                    bond = GameObject.Instantiate(bondPrefab, transform.position, transform.rotation, transform);
+                    newBonds.Add(bond);
+                //}
+                bond.SetBond(atom, drawnAtom.GetComponent<Atom>());
             }
-            for (; i < currentBonds.Count; ++i)
-            {
-                var bond = GameObject.Instantiate(bondPrefab, transform.position, transform.rotation, transform);
-                bond.SetBond(atoms[currentBonds[i].from], atoms[currentBonds[i].to]);
-            }
+            ++i;
         }
+       while (i < newBonds.Count)
+       {
+            var obj = newBonds[i];
+            GameObject.Destroy(obj);
+            newBonds.RemoveAt(i);
+       }
     }
 }
