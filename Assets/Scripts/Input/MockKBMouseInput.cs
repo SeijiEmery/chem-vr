@@ -21,19 +21,22 @@ using Valve.VR;
         if (Camera.current == null || Camera.current == fallbackCamera)
         {
             fallbackCamera.gameObject.SetActive(true);
+            Camera.SetupCurrent(fallbackCamera);
         } else
         {
             enabled = false;
+            fallbackCamera.gameObject.SetActive(false);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!enabled) return;
+        if (!enabled) return;/* || Input.mousePosition == null || Camera.current == null) return;
         Debug.Log("" + (Camera.current == null));
         var mouseRay = Camera.current.ScreenPointToRay(Input.mousePosition);
-        var mousePos3d = mouseRay.GetPoint(rayDepth);
+        var mousePos3d = mouseRay.GetPoint(rayDepth);*/
+        var mousePos3d = fallbackCamera.ScreenPointToRay(Input.mousePosition).GetPoint(rayDepth);
         mockMousePosTarget.transform.position = mousePos3d;
         var eventInfo = new HandTrackedInfo()
         {
@@ -47,6 +50,7 @@ using Valve.VR;
         };
         if (Input.GetButtonDown("Fire1"))
         {
+            Debug.Log("Onclick!");
             eventInfo.pressed = true; eventInfo.down = true;
             inputTarget.OnTriggerPressed(eventInfo);
         }
@@ -57,6 +61,8 @@ using Valve.VR;
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Debug.Log("esc!");
+
             eventInfo.pressed = true; eventInfo.down = true;
             inputTarget.OnCancelPressed(eventInfo);
         }
