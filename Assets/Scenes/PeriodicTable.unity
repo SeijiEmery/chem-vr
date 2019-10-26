@@ -170,7 +170,7 @@ MonoBehaviour:
   radius: 1.12
   name: Beryllium
   symbol: Be
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 0.7519039, g: 1, b: 0.5235849, a: 0}
 --- !u!135 &354455890
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -201,7 +201,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -328,7 +328,7 @@ MonoBehaviour:
   radius: 0.48
   name: Oxygen
   symbol: O
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 1, g: 0, b: 0, a: 0}
 --- !u!135 &743152703
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -359,7 +359,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -438,7 +438,7 @@ MonoBehaviour:
   radius: 0.38
   name: Neon
   symbol: Ne
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 0.41037738, g: 0.91888034, b: 1, a: 0}
 --- !u!135 &775493471
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -469,7 +469,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -548,7 +548,7 @@ MonoBehaviour:
   radius: 0.87
   name: Boron
   symbol: B
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 1, g: 0.72156864, b: 0.7476068, a: 0}
 --- !u!135 &861979058
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -579,7 +579,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -658,7 +658,7 @@ MonoBehaviour:
   radius: 0.56
   name: Nitrogen
   symbol: N
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 0, g: 0.26651955, b: 1, a: 0}
 --- !u!135 &862310790
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -689,7 +689,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -768,7 +768,7 @@ MonoBehaviour:
   radius: 1.18
   name: Aluminium
   symbol: Al
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 0.4811321, g: 0.4811321, b: 0.3372549, a: 0}
 --- !u!135 &880059398
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -799,7 +799,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -878,7 +878,7 @@ MonoBehaviour:
   radius: 1.9
   name: Natrium
   symbol: Na
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 0.6420452, g: 0.4764151, b: 1, a: 0}
 --- !u!135 &987178254
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -909,7 +909,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -988,7 +988,7 @@ MonoBehaviour:
   radius: 0.42
   name: Fluorine
   symbol: F
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 0.4198113, g: 0.4942131, b: 1, a: 0}
 --- !u!135 &1026486426
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1019,7 +1019,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1098,7 +1098,7 @@ MonoBehaviour:
   radius: 0.88
   name: Sulfur
   symbol: S
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 0.6415094, g: 0.546284, b: 0.20879316, a: 0}
 --- !u!135 &1039851703
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1129,7 +1129,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1208,7 +1208,7 @@ MonoBehaviour:
   radius: 0.71
   name: Argon
   symbol: Ar
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 0.32872018, g: 0.5790113, b: 0.7830189, a: 0}
 --- !u!135 &1161355131
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1239,7 +1239,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1318,7 +1318,7 @@ MonoBehaviour:
   radius: 1.67
   name: Lithium
   symbol: Li
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 0.825535, g: 0.6179246, b: 1, a: 0}
 --- !u!135 &1165908322
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1349,7 +1349,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1428,7 +1428,7 @@ MonoBehaviour:
   radius: 0.31
   name: Helium
   symbol: He
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 0.6462264, g: 0.9771759, b: 1, a: 0}
 --- !u!135 &1307110516
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1459,7 +1459,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1538,7 +1538,7 @@ MonoBehaviour:
   radius: 1.11
   name: Silicon
   symbol: Si
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 0.35804558, g: 0.40928963, b: 0.509434, a: 0}
 --- !u!135 &1496589880
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1569,7 +1569,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1648,7 +1648,7 @@ MonoBehaviour:
   radius: 0.98
   name: Phosphorus
   symbol: P
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 0.6509434, g: 0.46901214, b: 0.16273585, a: 0}
 --- !u!135 &1546452274
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1679,7 +1679,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1758,7 +1758,7 @@ MonoBehaviour:
   radius: 0.53
   name: Hydrogen
   symbol: H
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 1, g: 1, b: 1, a: 0}
 --- !u!135 &1660637471
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1951,7 +1951,7 @@ MonoBehaviour:
   radius: 0.79
   name: Chlorine
   symbol: Cl
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 0, g: 1, b: 0.008504152, a: 0}
 --- !u!135 &1795639862
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1982,7 +1982,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2061,7 +2061,7 @@ MonoBehaviour:
   radius: 1.45
   name: Magnesium
   symbol: Mg
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 0.48584908, g: 1, b: 0.48728257, a: 0}
 --- !u!135 &1936376777
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2092,7 +2092,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2262,7 +2262,7 @@ MonoBehaviour:
   radius: 0.67
   name: Carbon
   symbol: C
-  color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
+  color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0}
 --- !u!135 &2124599766
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2293,7 +2293,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d70b789feb6814c979f57a17f908eb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
