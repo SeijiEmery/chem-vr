@@ -7,8 +7,8 @@ public class AtomicTemplate : MonoBehaviour
 {
     public float mass;
     public float radius;
-    public float name;
-    public float symbol;
+    public string name;
+    public string symbol;
     public Color color;
 
     // Start is called before the first frame update
