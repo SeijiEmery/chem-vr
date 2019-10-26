@@ -72,7 +72,8 @@ public class DrawMolecule : HandTrackedInputReciever
        Debug.Log("found " + i + " bonds this cycle, have " + newBonds.Count);
        while (i < newBonds.Count)
        {
-            var j = newBonds.Count - 1;
+            var j = i;
+            //var j = newBonds.Count - 1;
             var obj = newBonds[j];
             GameObject.Destroy(obj);
             newBonds.RemoveAt(j);
