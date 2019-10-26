@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Molecule : MonoBehaviour
+public class Atom : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
