@@ -207,6 +207,11 @@ public class DrawMolecule : HandTrackedInputReciever
             drawnAtom = null;
             Object.DestroyImmediate(connectAtomToHandControllerJoint);
             connectAtomToHandControllerJoint = null;
+
+            foreach (var bond in newBonds)
+            {
+                bond.CreateBondConstraints();
+            }
             newBonds.Clear();
         }
     }
@@ -226,18 +231,12 @@ public class DrawMolecule : HandTrackedInputReciever
     public void FixedUpdate()
     {
         if (atoms == null || drawnAtom == null) return;
-        return;
-        foreach (var item in tempBonds)
-        {
-            item.DestroyBond();
-        }
-
         int i = 0; AtomicBond bond;
         foreach (var atom in atoms)
         {
             var dist = Vector3.Distance(atom.transform.position, drawnAtom.transform.position);
             //Debug.Log("" + i + ": " + dist + ": " + (dist <= bondFormationRadius));
-            if (dist <= bondFormationRadius && dist > minBondFormationRadius)
+            if (dist <= bondFormationRadius && dist >= minBondFormationRadius && atom.CanFormBondWith(drawnAtom.GetComponent<Atom>()))
             {
                 if (i < newBonds.Count)
                 {
@@ -256,8 +255,8 @@ public class DrawMolecule : HandTrackedInputReciever
             var j = i;
             //var j = newBonds.Count - 1;
             var obj = newBonds[j];
-            GameObject.Destroy(obj);
+            GameObject.Destroy(obj.gameObject);
             newBonds.RemoveAt(j);
-      }
+       }
     }
 }

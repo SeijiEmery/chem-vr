@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -117,5 +118,21 @@ public class Atom : MonoBehaviour, IFocusable
         {
             GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
         }
+    }
+
+    public bool CanFormBondWith(Atom other)
+    {
+        return true;
+        return this.currentBondingGroups > 0 && other.currentBondingGroups > 0;
+    }
+    public bool TryCreateBond (Atom other, AtomicBond bond)
+    {
+        if (!CanFormBondWith(other)) return false;
+        this.currentBondingGroups -= 1;
+        return true;
+    }
+    public void UncreateBond (Atom other, AtomicBond bond)
+    {
+        this.currentBondingGroups += 1;
     }
 }

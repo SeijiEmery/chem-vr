@@ -15,9 +15,14 @@ public class AtomicBond : MonoBehaviour, IFocusable
     public int electronCount = 0;
 
     public void Start () { initialLength = transform.localScale.y; }
-    public void SetBond(Atom first, Atom second)
+    public bool SetBond(Atom first, Atom second)
     {
-        if (first == this.first && second == this.second) return;
+        if (!first.TryCreateBond(second, this)) return false;
+        if (!second.TryCreateBond(first, this))
+        {
+            first.UncreateBond(second, this);
+            return false;
+        }
         this.first = first; this.second = second;
         if (joint != null)
         {
@@ -26,10 +31,9 @@ public class AtomicBond : MonoBehaviour, IFocusable
         }
         if (first != null && second != null)
         {
-            joint = first.gameObject.AddComponent<SpringJoint>();
-            joint.connectedBody = second.gameObject.GetComponent<Rigidbody>();
-            joint.spring = 1.0f;
+           
         }
+        return true;
     }
 
     // Update is called once per frame
@@ -50,6 +54,10 @@ public class AtomicBond : MonoBehaviour, IFocusable
             //     transform.localScale.y,
             //     dist);
             transform.localScale = new Vector3(transform.localScale.x, dist * .5F, transform.localScale.z);
+        }
+        if (first == null || second == null)
+        {
+            GameObject.DestroyImmediate(this.gameObject);
         }
     }
 
@@ -85,5 +93,11 @@ public class AtomicBond : MonoBehaviour, IFocusable
         {
             GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
         }
+    }
+    public void CreateBondConstraints ()
+    {
+        joint = first.gameObject.AddComponent<SpringJoint>();
+            joint.connectedBody = second.gameObject.GetComponent<Rigidbody>();
+            joint.spring = 1.0f;
     }
 }
