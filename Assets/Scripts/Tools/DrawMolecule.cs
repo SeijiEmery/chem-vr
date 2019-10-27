@@ -18,40 +18,73 @@ public class DrawMolecule : HandTrackedInputReciever
     List<AtomicBond> newBonds = new List<AtomicBond>();
 
     IFocusable focusTarget = null;
+    GameObject focusObject = null;
+    enum FocusType { None, AtomicTemplate, Atom, Bond, Unknown };
+    FocusType focusType = FocusType.None;
 
-    public override void OnFocusChanged(IFocusable focused, HandTrackedInfo.Direction direction, GameObject origin)
+    public override void OnFocusChanged(IFocusable focused, GameObject go, HandTrackedInfo.Direction direction, GameObject origin)
     {
         if (focused != focusTarget)
         {
+            focusObject = go;
             if (focusTarget != null) focusTarget.OnSetFocused(false);
             focusTarget = focused;
             if (focusTarget != null) focusTarget.OnSetFocused(true);
+
+            if (focusTarget == null)
+            {
+                focusType = FocusType.None;
+            } else
+            {
+                if (go.GetComponent<AtomicTemplate>() != null) focusType = FocusType.AtomicTemplate;
+                else if (go.GetComponent<Atom>() != null) focusType = FocusType.Atom;
+                else if (go.GetComponent<AtomicBond>() != null) focusType = FocusType.Bond;
+                else focusType = FocusType.Unknown;
+            }
+        }
+    }
+    GameObject SpawnAtom (HandTrackedInfo info, AtomicTemplate template)
+    {
+        var atom = GameObject.Instantiate(atomPrefab.gameObject, info.transform.position, info.transform.rotation, transform);
+        atom.transform.position = info.transform.position;
+        atom.transform.localScale = Vector3.one * template.radius * 0.1f;
+        atom.GetComponent<Renderer>().material.color = template.color;
+        atom.GetComponent<Rigidbody>().mass = template.mass;
+        return atom;
+    }
+    void SpawnAndEditAtom(HandTrackedInfo info)
+    {
+        if (drawnAtom == null && template != null)
+        {
+            atoms = gameObject.GetComponentsInChildren<Atom>();
+            drawnAtom = SpawnAtom(info, template);
+            connectAtomToHandControllerJoint = drawnAtom.AddComponent<FixedJoint>();
+            connectAtomToHandControllerJoint.connectedBody = info.rigidbody;
+            newBonds.Clear();
         }
     }
 
     public override void OnTriggerPressed(HandTrackedInfo info)
     {
-        if (info.raycastHit)
+        switch (focusType)
         {
-            var atomicTemplate = info.raycastInfo.collider.GetComponent<AtomicTemplate>();
-            if (atomicTemplate != null)
-            {
-                template = atomicTemplate;
-                return;
+            case FocusType.None: {
+                SpawnAndEditAtom(info);
+                    break;
             }
-        }
-
-        if (drawnAtom == null)
-        {
-            atoms = gameObject.GetComponentsInChildren<Atom>();
-            drawnAtom = GameObject.Instantiate(atomPrefab.gameObject, info.transform.position, info.transform.rotation, transform);
-            drawnAtom.transform.position = info.transform.position;
-            drawnAtom.transform.localScale = Vector3.one * template.radius * 0.1f;
-            drawnAtom.GetComponent<Renderer>().material.color = template.color;
-            drawnAtom.GetComponent<Rigidbody>().mass = template.mass;
-            connectAtomToHandControllerJoint = drawnAtom.AddComponent<FixedJoint>();
-            connectAtomToHandControllerJoint.connectedBody = info.rigidbody;
-            newBonds.Clear();
+            case FocusType.AtomicTemplate: {
+                    template = focusObject.GetComponent<AtomicTemplate>();
+                    SpawnAndEditAtom(info);
+                    break;
+                }
+            case FocusType.Atom:
+                {
+                    break;
+                }
+            case FocusType.Bond:
+                {
+                    break;
+                }
         }
     }
     public override void OnTriggerReleased(HandTrackedInfo info)

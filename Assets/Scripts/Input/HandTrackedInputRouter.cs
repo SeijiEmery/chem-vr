@@ -41,10 +41,10 @@ public class HandTrackedInputRouter : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         var focused = other.GetComponent<IFocusable>();
-        if (focused != null && other.gameObject != focusedTriggerObject && focusedRaycastObject != focusedRaycastObject)
+        if (focused != null)
         {
             focusedTriggerObject = other.gameObject;
-            target.OnFocusChanged(focused, direction, gameObject);
+            target.OnFocusChanged(focused, other.gameObject, direction, gameObject);
         }
     }
     public void OnTriggerExit(Collider other)
@@ -52,7 +52,7 @@ public class HandTrackedInputRouter : MonoBehaviour
         if (focusedTriggerObject == other.gameObject)
         {
             focusedTriggerObject = null;
-            target.OnFocusChanged(null, direction, gameObject);
+            target.OnFocusChanged(null, other.gameObject, direction, gameObject);
         }
     }
 
@@ -69,7 +69,7 @@ public class HandTrackedInputRouter : MonoBehaviour
                 if (hit.collider != focusedRaycastObject)
                 {
                     var focused = hit.collider.GetComponent<IFocusable>();
-                    target.OnFocusChanged(focused, direction, gameObject);
+                    target.OnFocusChanged(focused, hit.collider.gameObject, direction, gameObject);
                     focusedRaycastObject = hit.collider.gameObject;
                 }
             }

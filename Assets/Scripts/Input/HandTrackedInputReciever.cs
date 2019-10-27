@@ -12,7 +12,7 @@ public abstract class HandTrackedInputReciever : MonoBehaviour {
     {
         actions = GetComponent<InputActionMapping>();
     }
-    public virtual void OnFocusChanged(IFocusable focused, HandTrackedInfo.Direction direction, GameObject origin) { }
+    public virtual void OnFocusChanged(IFocusable focused, GameObject go, HandTrackedInfo.Direction direction, GameObject origin) { }
     public virtual void OnTriggerPressed(HandTrackedInfo info) { }
     public virtual void OnTriggerReleased(HandTrackedInfo info) { }
     public virtual void OnCancelPressed(HandTrackedInfo info) { }
