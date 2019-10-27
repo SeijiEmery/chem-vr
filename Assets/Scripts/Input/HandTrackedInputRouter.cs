@@ -35,45 +35,21 @@ public class HandTrackedInputRouter : MonoBehaviour
         };
     }
 
-    GameObject focusedRaycastObject = null;
-    GameObject focusedTriggerObject = null;
-
-    public void OnTriggerEnter(Collider other)
-    {
-        var focused = other.GetComponent<IFocusable>();
-        if (focused != null && other.gameObject != focusedTriggerObject && focusedRaycastObject != focusedRaycastObject)
-        {
-            focusedTriggerObject = other.gameObject;
-            target.OnFocusChanged(focused, direction, gameObject);
-        }
-    }
-    public void OnTriggerExit(Collider other)
-    {
-        if (focusedTriggerObject == other.gameObject)
-        {
-            focusedTriggerObject = null;
-            target.OnFocusChanged(null, direction, gameObject);
-        }
-    }
+    Collider focused;
 
     void Update()
     {
         // Highlight the focused object
-        if (focusedTriggerObject == null)
-        {
-            var t = controllerHandle.transform;
-            Ray ray = new Ray(t.position, t.forward);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.collider != focusedRaycastObject)
-                {
-                    var focused = hit.collider.GetComponent<IFocusable>();
-                    target.OnFocusChanged(focused, direction, gameObject);
-                    focusedRaycastObject = hit.collider.gameObject;
-                }
-            }
+        var t = controllerHandle.transform;
+        var ray = new Ray(t.position, t.rotation * Vector3.forward);
+        var hitInfo = new RaycastHit();
+        var hit = Physics.Raycast(ray, out hitInfo, 1000f, LayerMask.NameToLayer("interactive"));
+        if (focused != null) focused.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+        if (hit) {
+            hitInfo.collider.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+            focused = hitInfo.collider;
         }
+        hit = false;
         
         if (target.actions.trigger.GetStateDown(trackedObj.inputSource))
         {
