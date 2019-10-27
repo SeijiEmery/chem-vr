@@ -34,7 +34,7 @@ public class DrawMolecule : HandTrackedInputReciever
             atoms = gameObject.GetComponentsInChildren<Atom>();
             drawnAtom = GameObject.Instantiate(atomPrefab.gameObject, info.transform.position, info.transform.rotation, transform);
             drawnAtom.transform.position = info.transform.position;
-            drawnAtom.transform.localScale = Vector3.one * template.radius;
+            drawnAtom.transform.localScale = Vector3.one * template.radius * 0.1f;
             drawnAtom.GetComponent<Renderer>().material.color = template.color;
             drawnAtom.GetComponent<Rigidbody>().mass = template.mass;
             connectAtomToHandControllerJoint = drawnAtom.AddComponent<FixedJoint>();

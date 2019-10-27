@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5921857168530755293}
   - component: {fileID: 524713320676743307}
   - component: {fileID: 621030148265109193}
+  - component: {fileID: 4244657355655635490}
   m_Layer: 0
   m_Name: ToolsController
   m_TagString: Untagged
@@ -68,6 +69,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions: {fileID: 0}
   atomPrefab: {fileID: 0}
+  bondPrefab: {fileID: 0}
+  bondFormationRadius: 0
+  minBondFormationRadius: 0.01
 --- !u!114 &621030148265109193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,3 +86,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions: {fileID: 0}
   activeTool: 0
+--- !u!114 &4244657355655635490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018246110660522646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325b2fc497ca76646a69d5e5675e82dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabled: 0
+  rayDepth: 10
+  mockMousePosTarget: {fileID: 0}
+  defaultActionPose: {fileID: 0}
+  fallbackCamera: {fileID: 0}
