@@ -150,7 +150,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!81 &431316316
 AudioListener:
@@ -248,7 +248,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &762631636
 GameObject:
@@ -274,12 +274,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762631636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4893, y: 0.15796, z: 0}
-  m_LocalScale: {x: 0.024637127, y: 0.024637127, z: 0.024637127}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1470671588}
+  - {fileID: 88592780}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!21 &877877313
 Material:
@@ -580,7 +580,7 @@ Transform:
   m_LocalScale: {x: 20.191, y: 1.5610065, z: 20.191}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1470671587
 GameObject:
@@ -840,7 +840,7 @@ PrefabInstance:
     - target: {fileID: 5121523683209584583, guid: e8bd7788effd46641836fcf999db75c2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5121523683209584583, guid: e8bd7788effd46641836fcf999db75c2,
         type: 3}
@@ -866,6 +866,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+
       objectReference: {fileID: 1904310766}
     m_RemovedComponents:
     - {fileID: 1110379728, guid: e8bd7788effd46641836fcf999db75c2, type: 3}
@@ -1018,7 +1019,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557759412}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 325b2fc497ca76646a69d5e5675e82dc, type: 3}
   m_Name: 
@@ -1075,8 +1076,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8c1dff63a561f4798cdf3b43a69c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftController: {fileID: 0}
-  rightController: {fileID: 0}
+  leftController: {fileID: 1527344814}
+  rightController: {fileID: 1527344815}
   cameraManipButton:
     actionPath: /actions/default/in/GrabGrip
     needsReinit: 0
@@ -1100,9 +1101,9 @@ MonoBehaviour:
   debugScaleFactorChange: 0
   debugLeft: {x: 0, y: 0, z: 0}
   debugRight: {x: 0, y: 0, z: 0}
-  scaleTransform: {fileID: 0}
+  scaleTransform: {fileID: 88592780}
   translateTransform: {fileID: 762631637}
-  rotateTransform: {fileID: 0}
+  rotateTransform: {fileID: 88592780}
   inverseTranslateTransform: {fileID: 1557759417}
 --- !u!43 &1904310766
 Mesh:
@@ -1272,7 +1273,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 88592780}
     m_Modifications:
     - target: {fileID: 1018246110660522646, guid: 093964a0aeeabf84bb99e5c10384f716,
         type: 3}
@@ -1334,7 +1335,7 @@ PrefabInstance:
     - target: {fileID: 1018246110660522645, guid: 093964a0aeeabf84bb99e5c10384f716,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1018246110660522645, guid: 093964a0aeeabf84bb99e5c10384f716,
         type: 3}

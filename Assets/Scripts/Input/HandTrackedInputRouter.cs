@@ -74,6 +74,7 @@ public class HandTrackedInputRouter : MonoBehaviour
                 }
             }
         }
+        hit = false;
         
         if (target.actions.trigger.GetStateDown(trackedObj.inputSource))
         {

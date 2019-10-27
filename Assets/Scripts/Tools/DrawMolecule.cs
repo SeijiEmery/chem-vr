@@ -106,10 +106,6 @@ public class DrawMolecule : HandTrackedInputReciever
             connectAtomToHandControllerJoint = null;
         }
     }
-    public void Update()
-    {
-           
-    }
     public void FixedUpdate()
     {
         if (atoms == null || drawnAtom == null) return;
