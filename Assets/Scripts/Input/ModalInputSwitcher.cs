@@ -25,15 +25,21 @@ public class ModalInputSwitcher : HandTrackedInputReciever
         }
     }
 
-    Focusable focusedObj;
+    IFocusable focusedObj;
 
+    public void SetFocus (IFocusable focus)
+    {
+        if (focusedObj != null) focusedObj.OnSetFocused(false);
+        if (focus != null) focus.OnSetFocused(true);
+        focusedObj = focus;
+    }
     void tryHandleMouseover (HandTrackedInfo info)
     {
-        if (info.raycastHit == false) return;
+        /*if (info.raycastHit == false) return;
         var target = info.raycastInfo.collider.GetComponent<Focusable>();
         if (focusedObj) focusedObj.SetFocused(false);
         if (target) target.SetFocused(true);
-        focusedObj = target;
+        focusedObj = target;*/
     }
 
     public override void OnTriggerPressed(HandTrackedInfo info)
