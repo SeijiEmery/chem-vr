@@ -17,6 +17,18 @@ public class DrawMolecule : HandTrackedInputReciever
     struct Bond { public int from; public int to; }
     List<AtomicBond> newBonds = new List<AtomicBond>();
 
+    IFocusable focusTarget = null;
+
+    public override void OnFocusChanged(IFocusable focused, HandTrackedInfo.Direction direction, GameObject origin)
+    {
+        if (focused != focusTarget)
+        {
+            if (focusTarget != null) focusTarget.OnSetFocused(false);
+            focusTarget = focused;
+            if (focusTarget != null) focusTarget.OnSetFocused(true);
+        }
+    }
+
     public override void OnTriggerPressed(HandTrackedInfo info)
     {
         if (info.raycastHit)
@@ -60,6 +72,10 @@ public class DrawMolecule : HandTrackedInputReciever
             drawnAtom = null;
             connectAtomToHandControllerJoint = null;
         }
+    }
+    public void Update()
+    {
+           
     }
     public void FixedUpdate()
     {
