@@ -71,7 +71,7 @@ public class DrawMolecule : HandTrackedInputReciever
                     tooltipTextMesh.text = template.name;
                     tooltipTextMesh.gameObject.transform.position = template.gameObject.transform.position
                         + Vector3.back * 0.22f;
-                    //tooltipTextMesh.gameObject.transform.LookAt(playerTarget, Vector3.up);
+                    tooltipTextMesh.gameObject.transform.LookAt(playerTarget, Vector3.up);
                 } else
                 {
                     //tooltipTextMesh.gameObject.SetActive(false);

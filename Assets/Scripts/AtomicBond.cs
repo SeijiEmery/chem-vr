@@ -170,6 +170,7 @@ public class AtomicBond : MonoBehaviour, IFocusable
         joint = first.gameObject.AddComponent<SpringJoint>();
         joint.connectedBody = second.gameObject.GetComponent<Rigidbody>();
         joint.connectedAnchor = (first.transform.position - second.transform.position).normalized * bondLength * 0.1f;
+        joint.damper = 0.85f;
         joint.spring = 1.0f;
     }
 }
