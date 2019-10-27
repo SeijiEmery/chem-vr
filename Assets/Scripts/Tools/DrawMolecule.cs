@@ -22,9 +22,32 @@ public class DrawMolecule : HandTrackedInputReciever
     GameObject focusObject = null;
     enum FocusType { None, AtomicTemplate, Atom, Bond, Unknown };
     FocusType focusType = FocusType.None;
+    public enum EditMode { Draw, AddBonds, Delete };
+    EditMode editMode = EditMode.Draw;
+
+
+    public TextMeshPro editModeText;
+   void toggleNextEditMode ()
+    {
+        editMode += 1;
+        if (editMode > EditMode.Delete)
+        {
+            editMode = EditMode.Draw;
+        }
+        switch (editMode)
+        {
+            case EditMode.Draw: editModeText.text = "Draw"; break;
+            case EditMode.AddBonds: editModeText.text = "Add bonds"; break;
+            case EditMode.Delete: editModeText.text = "Delete"; break;
+        }
+    }
+
 
     public TextMeshPro tooltipTextMesh;
     public Transform playerTarget;
+
+    GameObject targetBond;
+    AtomicBond targetBondObj;
 
     public override void OnFocusChanged(IFocusable focused, GameObject go, HandTrackedInfo.Direction direction, GameObject origin)
     {
@@ -61,11 +84,20 @@ public class DrawMolecule : HandTrackedInputReciever
                 else focusType = FocusType.Unknown;
             }
         }
+        if (editMode == EditMode.AddBonds)
+        {
+            if (targetBond != null && targetBondObj != focusObject)
+            {
+               //  targetBond.DestroyBond();
+            }
+            // startBoundsFrom.GetComponent<Atom>().
+        }
     }
     GameObject SpawnAtom (HandTrackedInfo info, AtomicTemplate template)
     {
         var atom = GameObject.Instantiate(atomPrefab.gameObject, info.transform.position, info.transform.rotation, transform);
         atom.transform.position = info.transform.position;
+        atom.GetComponent<Atom>().SetAtomType(template);
         atom.transform.localScale = Vector3.one * template.radius * 0.1f;
         atom.GetComponent<Renderer>().material.color = template.color;
         atom.GetComponent<Rigidbody>().mass = template.mass;
@@ -85,27 +117,89 @@ public class DrawMolecule : HandTrackedInputReciever
 
     public override void OnTriggerPressed(HandTrackedInfo info)
     {
-        switch (focusType)
+        switch (editMode)
         {
-            case FocusType.None: {
-                SpawnAndEditAtom(info);
-                    break;
-            }
-            case FocusType.AtomicTemplate: {
-                    template = focusObject.GetComponent<AtomicTemplate>();
-                    SpawnAndEditAtom(info);
-                    break;
-                }
-            case FocusType.Atom:
+            case EditMode.Draw:
                 {
-                    break;
+                    switch (focusType)
+                    {
+                        case FocusType.None:
+                            {
+                                SpawnAndEditAtom(info);
+                                break;
+                            }
+                        case FocusType.AtomicTemplate:
+                            {
+                                template = focusObject.GetComponent<AtomicTemplate>();
+                                SpawnAndEditAtom(info);
+                                break;
+                            }
+                        case FocusType.Atom:
+                            {
+                                drawnAtom = focusObject;
+                                connectAtomToHandControllerJoint = drawnAtom.AddComponent<FixedJoint>();
+                                connectAtomToHandControllerJoint.connectedBody = info.rigidbody;
+                                break;
+                            }
+                        case FocusType.Bond:
+                            {
+                                break;
+                            }
+                    }
                 }
-            case FocusType.Bond:
+                break;
+            case EditMode.AddBonds:
+                switch (focusType)
                 {
-                    break;
+                    case FocusType.None:
+                        {
+                            break;
+                        }
+                    case FocusType.AtomicTemplate:
+                        {
+                            break;
+                        }
+                    case FocusType.Atom:
+                        {
+                            startBoundsFrom = focusObject;
+                            break;
+                        }
+                    case FocusType.Bond:
+                        {
+                            break;
+                        }
                 }
+                break;
+            case EditMode.Delete:
+                switch (focusType)
+                {
+                    case FocusType.None:
+                        {
+                            break;
+                        }
+                    case FocusType.AtomicTemplate:
+                        {
+                            template = focusObject.GetComponent<AtomicTemplate>();
+                            SpawnAndEditAtom(info);
+                            break;
+                        }
+                    case FocusType.Atom:
+                        {
+                            GameObject.DestroyImmediate(focusObject);
+                            break;
+                        }
+                    case FocusType.Bond:
+                        {
+                            GameObject.DestroyImmediate(focusObject);
+                            break;
+                        }
+                }
+                break;
         }
     }
+
+    private GameObject startBoundsFrom;
+
     public override void OnTriggerReleased(HandTrackedInfo info)
     {
         if (drawnAtom != null)
@@ -123,11 +217,21 @@ public class DrawMolecule : HandTrackedInputReciever
             GameObject.DestroyImmediate(drawnAtom);
             drawnAtom = null;
             connectAtomToHandControllerJoint = null;
-        }
+        }else 
+        toggleNextEditMode();
     }
+
+    List<AtomicBond> tempBonds = new List<AtomicBond>();
+
     public void FixedUpdate()
     {
         if (atoms == null || drawnAtom == null) return;
+        return;
+        foreach (var item in tempBonds)
+        {
+            item.DestroyBond();
+        }
+
         int i = 0; AtomicBond bond;
         foreach (var atom in atoms)
         {

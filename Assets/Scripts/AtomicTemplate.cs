@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Material))]
 public class AtomicTemplate : MonoBehaviour, IFocusable
 {
+    public int atomicNumber;
     public float mass;
     public float radius;
     public string name;

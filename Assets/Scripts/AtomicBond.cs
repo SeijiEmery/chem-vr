@@ -1,14 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AtomicBond : MonoBehaviour
+public class AtomicBond : MonoBehaviour, IFocusable
 {
 
     float initialLength = 1f;
     Atom first = null;
     Atom second = null;
+    public bool isElectronGroup { get { return electronCount <= 0; } }
+
     SpringJoint joint = null;
+    public int electronCount = 0;
 
     public void Start () { initialLength = transform.localScale.y; }
     public void SetBond(Atom first, Atom second)
@@ -46,6 +50,40 @@ public class AtomicBond : MonoBehaviour
             //     transform.localScale.y,
             //     dist);
             transform.localScale = new Vector3(transform.localScale.x, dist * .5F, transform.localScale.z);
+        }
+    }
+
+    public void DestroyBond ()
+    {
+
+    }
+
+    internal static AtomicBond MakeElectronGroup()
+    {
+        return new AtomicBond() { first = null, second = null, electronCount = 1 };
+    }
+
+    internal void SetElectronCount(int v)
+    {
+        electronCount = v ;
+    }
+
+    internal static AtomicBond Create(Atom atom, Atom other)
+    {
+        var bond = new AtomicBond();
+        bond.SetBond(atom, other);
+        return bond;
+    }
+
+    public void OnSetFocused(bool focused)
+    {
+        if (focused)
+        {
+            GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+        }
+        else
+        {
+            GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
         }
     }
 }
