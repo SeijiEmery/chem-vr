@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(DrawMolecule))]
+[RequireComponent(typeof(DrawMolecule)), RequireComponent(typeof(ScalingMovement))]
 public class ModalInputSwitcher : HandTrackedInputReciever
 {
-    public enum ActiveTool { Draw }
+    public enum ActiveTool { Draw, Movement }
     public ActiveTool activeTool;
 
     DrawMolecule draw;
+    ScalingMovement movement;
 
     public void Start ()
     {
         draw = GetComponent<DrawMolecule>();
+        movement = GetComponent<ScalingMovement>();
     }
 
     public HandTrackedInputReciever target {
@@ -20,6 +22,7 @@ public class ModalInputSwitcher : HandTrackedInputReciever
             switch (activeTool)
             {
                 case ActiveTool.Draw: return draw;
+                case ActiveTool.Movement: return movement;
             }
             return null;
         }
@@ -59,12 +62,15 @@ public class ModalInputSwitcher : HandTrackedInputReciever
     }
     public override void OnGripPressed(HandTrackedInfo info)
     {
+        Debug.Log("p");
         tryHandleMouseover(info);
         target?.OnGripPressed(info);
+        movement?.OnGripPressed(info);
     }
     public override void OnGripReleased(HandTrackedInfo info)
     {
         tryHandleMouseover(info);
         target?.OnGripReleased(info);
+        movement?.OnGripPressed(info);
     }
 }

@@ -58,6 +58,11 @@ public class WorldManipulator : MonoBehaviour
     public float debugScaleFactorChange = 0.0f;
     public Vector3 debugLeft = Vector3.zero, debugRight = Vector3.zero;
 
+    public Transform scaleTransform;
+    public Transform translateTransform;
+    public Transform rotateTransform;
+    public Transform inverseTranslateTransform;
+
     private void updateCameraManip () {
         var prevState = cameraManipState;
         cameraManipState = getCameraManipState();
@@ -91,30 +96,42 @@ public class WorldManipulator : MonoBehaviour
 
             var offset = midpoint - initialMidpoint;
             var scale = initialScale * dist / initialDist;
-            scale = Mathf.Clamp(scale, minScale, maxScale);
+            //  scale = Mathf.Clamp(scale, minScale, maxScale);
 
-            var newOrigin = (initialOrigin / initialScale + offset) * scale;
-            worldScale = scale;
+            var newOrigin = initialOrigin + offset;
+            inverseTranslateTransform.position = initialOrigin + offset;
+            translateTransform.position = initialOrigin - offset;
+            scaleTransform.localScale = Vector3.one * Mathf.Pow(scale / initialScale, 2f);
 
-            if (scale != worldScale)
+
+
+
+
+          //  var newOrigin = (initialOrigin + offset) * (scale / initialScale + 1f);
+            //var newOrigin = (initialOrigin / initialScale + offset) *scale;               
+            //var newOrigin = initialOrigin * (1f - scale / initialScale) + offset; 
+           // initialOrigin - initialOrigin / scale * initialScale;     
+           //     (initialOrigin / initialScale + offset) * scale;
+            /*if (scale != worldScale)
             {
                 worldScale = scale;
-                transform.localScale = Vector3.one / worldScale;
+                scaleTransform.localScale = Vector3.one * worldScale;
             }
             if (newOrigin != worldOrigin)
             {
+                Debug.Log(newOrigin);
                 worldOrigin = newOrigin;
-                transform.position = worldOrigin;
+                translateTransform.position = worldOrigin;
             }
-
+            */
             // apply rotation iff two controllers active
-            if (cameraManipState == CameraManipState.TransformWithBothControllers)
+           /* if (cameraManipState == CameraManipState.TransformWithBothControllers)
             {
                 var delta = leftPos - rightPos;
                 var initialDelta = initialLeftPos - initialRightPos;
                 var newRotation = getRotation(delta, initialDelta);
                 transform.rotation = newRotation;
-            }
+            }*/
         }
     }
 
