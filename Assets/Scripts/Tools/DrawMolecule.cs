@@ -243,6 +243,7 @@ public class DrawMolecule : HandTrackedInputReciever
                     bond = newBonds[i++];
                 } else
                 {
+                    ++i;
                     bond = GameObject.Instantiate(bondPrefab, transform.position, transform.rotation, transform);
                     newBonds.Add(bond);
                 }
