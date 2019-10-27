@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/DrawMolecules.unity
+    guid: cb0791bf186ea1f468668cd7c770f204
   m_configObjects: {}

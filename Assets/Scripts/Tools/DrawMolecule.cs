@@ -222,8 +222,7 @@ public class DrawMolecule : HandTrackedInputReciever
             GameObject.DestroyImmediate(drawnAtom);
             drawnAtom = null;
             connectAtomToHandControllerJoint = null;
-        }else 
-        toggleNextEditMode();
+        }
     }
 
     List<AtomicBond> tempBonds = new List<AtomicBond>();
