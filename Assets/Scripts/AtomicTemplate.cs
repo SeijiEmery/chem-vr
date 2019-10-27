@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Material))]
-public class AtomicTemplate : Focusable
+public class AtomicTemplate : MonoBehaviour, IFocusable
 {
     public float mass;
     public float radius;
     public string name;
     public string symbol;
     public Color color;
-    public void OnFocus(bool focused)
+    public void OnSetFocused(bool focused)
     {
-        var renderer = GetComponent<Renderer>();
-        if (focused) {
-            renderer.material.color = Color.green;
-        } else {
-            renderer.material.color = color;
+        if (focused)
+        {
+            GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+        }
+        else
+        {
+            GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
         }
     }
 
