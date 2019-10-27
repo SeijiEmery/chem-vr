@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
+using TMPro;
 
 public class DrawMolecule : HandTrackedInputReciever
 {
@@ -22,6 +23,9 @@ public class DrawMolecule : HandTrackedInputReciever
     enum FocusType { None, AtomicTemplate, Atom, Bond, Unknown };
     FocusType focusType = FocusType.None;
 
+    public TextMeshPro tooltipTextMesh;
+    public Transform playerTarget;
+
     public override void OnFocusChanged(IFocusable focused, GameObject go, HandTrackedInfo.Direction direction, GameObject origin)
     {
         if (focused != focusTarget)
@@ -36,6 +40,21 @@ public class DrawMolecule : HandTrackedInputReciever
                 focusType = FocusType.None;
             } else
             {
+                var template = go.GetComponent<AtomicTemplate>();
+                if (template != null)
+                {
+                    //tooltipTextMesh.gameObject.SetActive(false);
+                    focusType = FocusType.AtomicTemplate;
+                    tooltipTextMesh.text = template.name;
+                    tooltipTextMesh.gameObject.transform.position = template.gameObject.transform.position
+                        + Vector3.back * 0.22f;
+                    //tooltipTextMesh.gameObject.transform.LookAt(playerTarget, Vector3.up);
+                } else
+                {
+                    //tooltipTextMesh.gameObject.SetActive(false);
+                }
+
+
                 if (go.GetComponent<AtomicTemplate>() != null) focusType = FocusType.AtomicTemplate;
                 else if (go.GetComponent<Atom>() != null) focusType = FocusType.Atom;
                 else if (go.GetComponent<AtomicBond>() != null) focusType = FocusType.Bond;
