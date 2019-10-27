@@ -14,7 +14,7 @@ public class AtomicTemplate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Material>().color = color;
+        color = GetComponent<Material>().color;
         transform.localScale = Vector3.one * radius;
     }
 

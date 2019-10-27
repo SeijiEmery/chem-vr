@@ -7,6 +7,7 @@ public class DrawMolecule : HandTrackedInputReciever
 {
     public Atom atomPrefab;
     public AtomicBond bondPrefab;
+    AtomicTemplate template;
     GameObject drawnAtom = null;
     FixedJoint connectAtomToHandControllerJoint;
     Atom[] atoms;
@@ -18,12 +19,24 @@ public class DrawMolecule : HandTrackedInputReciever
 
     public override void OnTriggerPressed(HandTrackedInfo info)
     {
-        Debug.Log("trigger pressed: " + info);
+        if (info.raycastHit)
+        {
+            var atomicTemplate = info.raycastInfo.collider.GetComponent<AtomicTemplate>();
+            if (atomicTemplate != null)
+            {
+                template = atomicTemplate;
+                return;
+            }
+        }
+
         if (drawnAtom == null)
         {
             atoms = gameObject.GetComponentsInChildren<Atom>();
             drawnAtom = GameObject.Instantiate(atomPrefab.gameObject, info.transform.position, info.transform.rotation, transform);
             drawnAtom.transform.position = info.transform.position;
+            drawnAtom.transform.localScale = Vector3.one * template.radius;
+            drawnAtom.GetComponent<Material>().color = template.color;
+            drawnAtom.GetComponent<Rigidbody>().mass = template.mass;
             connectAtomToHandControllerJoint = drawnAtom.AddComponent<FixedJoint>();
             connectAtomToHandControllerJoint.connectedBody = info.rigidbody;
             newBonds.Clear();

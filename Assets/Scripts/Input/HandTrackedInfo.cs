@@ -12,4 +12,6 @@ public struct HandTrackedInfo {
     public bool down;
     public enum Direction { Left, Right };
     public Direction direction;
+    public RaycastHit raycastInfo;
+    public bool raycastHit;
 }

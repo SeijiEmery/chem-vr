@@ -17,6 +17,10 @@ public class HandTrackedInputRouter : MonoBehaviour
 
     HandTrackedInfo MakeTrackingInfo (bool pressed, bool down)
     {
+        var t = controllerHandle.transform;
+        var ray = new Ray(t.position, t.rotation * Vector3.forward);
+        var hitInfo = new RaycastHit();
+        var hit = Physics.Raycast(ray, out hitInfo, 1000f, LayerMask.NameToLayer("interactive"));
         return new HandTrackedInfo()
         {
             direction = direction,
@@ -25,12 +29,15 @@ public class HandTrackedInputRouter : MonoBehaviour
             rigidbody = controllerHandle.GetComponent<Rigidbody>(),
             transform = controllerHandle.transform,
             down = down,
-            pressed = pressed
+            pressed = pressed,
+            raycastHit = hit,
+            raycastInfo = hitInfo
         };
     }
 
     void Update()
     {
+        
         if (target.actions.trigger.GetStateDown(trackedObj.inputSource))
         {
             target.OnTriggerPressed(MakeTrackingInfo(true, true));
