@@ -29,6 +29,8 @@ using Valve.VR;
         }
     }
 
+    Collider focused;
+
     // Update is called once per frame
     void Update()
     {
@@ -48,6 +50,17 @@ using Valve.VR;
             pressed = false,
             down = false
         };
+
+        var ray = fallbackCamera.ScreenPointToRay(Input.mousePosition);
+        var hitInfo = new RaycastHit();
+        var hit = Physics.Raycast(ray, out hitInfo, 1000f, LayerMask.NameToLayer("interactive"));
+        if (focused != null) focused.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+        if (hit) {
+            hitInfo.collider.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+            focused = hitInfo.collider;
+        }
+        hit = false;
+
         if (Input.GetButtonDown("Fire1"))
         {
             Debug.Log("Onclick!");

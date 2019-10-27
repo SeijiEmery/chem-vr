@@ -35,8 +35,21 @@ public class HandTrackedInputRouter : MonoBehaviour
         };
     }
 
+    Collider focused;
+
     void Update()
     {
+        // Highlight the focused object
+        var t = controllerHandle.transform;
+        var ray = new Ray(t.position, t.rotation * Vector3.forward);
+        var hitInfo = new RaycastHit();
+        var hit = Physics.Raycast(ray, out hitInfo, 1000f, LayerMask.NameToLayer("interactive"));
+        if (focused != null) focused.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+        if (hit) {
+            hitInfo.collider.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+            focused = hitInfo.collider;
+        }
+        hit = false;
         
         if (target.actions.trigger.GetStateDown(trackedObj.inputSource))
         {

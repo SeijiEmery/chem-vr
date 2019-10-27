@@ -781,6 +781,21 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1418786361}
+    - target: {fileID: 5124387579249030109, guid: e8bd7788effd46641836fcf999db75c2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124387579249030109, guid: e8bd7788effd46641836fcf999db75c2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124387579249030109, guid: e8bd7788effd46641836fcf999db75c2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.09
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1110379728, guid: e8bd7788effd46641836fcf999db75c2, type: 3}
     - {fileID: 332366464, guid: e8bd7788effd46641836fcf999db75c2, type: 3}
@@ -906,12 +921,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557759412}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 325b2fc497ca76646a69d5e5675e82dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enabled: 0
+  enabled: 1
   rayDepth: 1
   mockMousePosTarget: {fileID: 690988147}
   defaultActionPose: {fileID: 1527344817}
@@ -1000,5 +1015,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4244657355655635490, guid: 093964a0aeeabf84bb99e5c10384f716, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 093964a0aeeabf84bb99e5c10384f716, type: 3}
